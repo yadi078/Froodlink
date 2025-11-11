@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Panel del Cocinero - FoodLink</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">Food<span>Link</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="nav-item nav-link">Inicio</a>
+                        <a href="menu.html" class="nav-item nav-link">Menú</a>
+                        <a href="ventas.html" class="nav-item nav-link d-none" id="ventasLink">Ventas</a>
+                        <a href="mis-pedidos.html" class="nav-item nav-link d-none" id="misPedidosLink">Mis Pedidos</a>
+                        <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+                        <a href="faq.html" class="nav-item nav-link">Preguntas</a>
+                        <a href="#" class="nav-item nav-link" id="loginBtn">Iniciar Sesión</a>
+                        <a href="#" class="nav-item nav-link" id="registerBtn">Registrarse</a>
+                        <a href="panel-cocinero.html" class="nav-item nav-link active d-none" id="panelCocineroBtn">Panel Cocinero</a>
+                        <a href="#" class="nav-item nav-link d-none" id="logoutBtn">Cerrar Sesión</a>
+                        <span class="nav-item nav-link d-none" id="userWelcome"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+        
+        <!-- Page Header Start -->
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Panel del Cocinero</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="index.html">Inicio</a>
+                        <a href="">Panel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Panel Start -->
+        <div class="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0">Agregar Nueva Comida</h4>
+                            </div>
+                            <div class="card-body">
+                                <form id="addFoodForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nombre de la Comida</label>
+                                                <input type="text" class="form-control" id="foodName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Precio</label>
+                                                <input type="number" class="form-control" id="foodPrice" step="0.01" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Cantidad Disponible</label>
+                                                <input type="number" class="form-control" id="foodQuantity" min="0" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Foto</label>
+                                                <select class="form-control" id="foodPhoto" required>
+                                                    <option value="foto1.jpg">Foto 1</option>
+                                                    <option value="foto2.jpg">Foto 2</option>
+                                                    <option value="foto3.jpg">Foto 3</option>
+                                                    <option value="foto4.jpg">Foto 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Descripción</label>
+                                        <textarea class="form-control" id="foodDescription" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn custom-btn">Agregar Comida</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h4 class="mb-0">Mis Comidas</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Foto</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="myFoodsTable">
+                                            <!-- Las comidas del cocinero se cargarán aquí -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Panel End -->
+
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Contáctanos</h2>
+                                    <p><i class="fa fa-map-marker-alt"></i>Ciudad, País</p>
+                                    <p><i class="fa fa-phone-alt"></i>+123 456 7890</p>
+                                    <p><i class="fa fa-envelope"></i>info@foodlink.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; FoodLink 2025, Todos los Derechos Reservados.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editFoodModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Comida</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editFoodForm">
+                            <input type="hidden" id="editFoodId">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" id="editFoodName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Precio</label>
+                                <input type="number" class="form-control" id="editFoodPrice" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Cantidad</label>
+                                <input type="number" class="form-control" id="editFoodQuantity" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <select class="form-control" id="editFoodPhoto" required>
+                                    <option value="foto1.jpg">Foto 1</option>
+                                    <option value="foto2.jpg">Foto 2</option>
+                                    <option value="foto3.jpg">Foto 3</option>
+                                    <option value="foto4.jpg">Foto 4</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" id="editFoodDescription" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/cocinero.js"></script>
+    </body>
+</html>

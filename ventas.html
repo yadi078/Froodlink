@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ventas - FoodLink</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="FoodLink Ventas" name="keywords" />
+    <meta content="Panel de ventas para cocineros" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet" />
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Nav Bar Start -->
+    <div class="navbar navbar-expand-lg bg-light navbar-light">
+      <div class="container-fluid">
+        <a href="index.html" class="navbar-brand">Food<span>Link</span></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav ml-auto">
+            <a href="index.html" class="nav-item nav-link">Inicio</a>
+            <a href="menu.html" class="nav-item nav-link">Menú</a>
+            <a href="ventas.html" class="nav-item nav-link active" id="ventasLink">Ventas</a>
+            <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+            <a href="faq.html" class="nav-item nav-link">Preguntas</a>
+            <a href="panel-cocinero.html" class="nav-item nav-link" id="panelCocineroBtn">Panel Cocinero</a>
+            <a href="#" class="nav-item nav-link" id="logoutBtn">Cerrar Sesión</a>
+            <span class="nav-item nav-link text-primary" id="userWelcome"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Page Header Start -->
+    <div class="page-header mb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Mis Ventas</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Ventas Start -->
+    <div class="food-menu py-5">
+      <div class="container">
+        <div class="section-header text-center">
+          <p>Gestiona tus ventas</p>
+          <h2>Panel de Ventas</h2>
+        </div>
+
+        <!-- Alert Container -->
+        <div id="alertContainer"></div>
+
+        <!-- Tabs para filtrar -->
+        <ul class="nav nav-pills mb-4 justify-content-center" id="ventasTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pendientes-tab" data-toggle="pill" href="#pendientes" role="tab">
+              Pedidos Pendientes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="entregados-tab" data-toggle="pill" href="#entregados" role="tab">
+              Pedidos Entregados
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="ventasTabContent">
+          <!-- Pedidos Pendientes -->
+          <div class="tab-pane fade show active" id="pendientes" role="tabpanel">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>ID Pedido</th>
+                    <th>Cliente</th>
+                    <th>Comida</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="pendientesTable">
+                  <tr>
+                    <td colspan="8" class="text-center">Cargando pedidos pendientes...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pedidos Entregados -->
+          <div class="tab-pane fade" id="entregados" role="tabpanel">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>ID Pedido</th>
+                    <th>Cliente</th>
+                    <th>Comida</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Fecha Pedido</th>
+                    <th>Fecha Entrega</th>
+                  </tr>
+                </thead>
+                <tbody id="entregadosTable">
+                  <tr>
+                    <td colspan="7" class="text-center">Cargando pedidos entregados...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Ventas End -->
+
+    <!-- Footer Start -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="footer-contact">
+                  <h2>Dirección</h2>
+                  <p><i class="fa fa-map-marker-alt"></i>Universidad de Colima, Colima, México</p>
+                  <p><i class="fa fa-phone-alt"></i>+52 312 316 1000</p>
+                  <p><i class="fa fa-envelope"></i>info@foodlink.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <p>Copyright &copy; <a href="#">FoodLink</a>, Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ventas.js"></script>
+  </body>
+</html>

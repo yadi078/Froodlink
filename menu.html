@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Menú - FoodLink</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            .auth-overlay {
+                position: relative;
+            }
+            .auth-overlay::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(255, 255, 255, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+            }
+            .menu-item.auth-required .order-controls,
+            .menu-item.auth-required .comment-section {
+                filter: blur(3px);
+                pointer-events: none;
+            }
+            .auth-message {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 11;
+                text-align: center;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">Food<span>Link</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="nav-item nav-link">Inicio</a>
+                        <a href="menu.html" class="nav-item nav-link active">Menú</a>
+                        <a href="ventas.html" class="nav-item nav-link d-none" id="ventasLink">Ventas</a>
+                        <a href="mis-pedidos.html" class="nav-item nav-link d-none" id="misPedidosLink">Mis Pedidos</a>
+                        <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+                        <a href="faq.html" class="nav-item nav-link">Preguntas</a>
+                        <a href="#" class="nav-item nav-link" id="loginBtn">Iniciar Sesión</a>
+                        <a href="#" class="nav-item nav-link" id="registerBtn">Registrarse</a>
+                        <a href="panel-cocinero.html" class="nav-item nav-link d-none" id="panelCocineroBtn">Panel Cocinero</a>
+                        <a href="#" class="nav-item nav-link d-none" id="logoutBtn">Cerrar Sesión</a>
+                        <span class="nav-item nav-link d-none" id="userWelcome"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+        
+        <!-- Page Header Start -->
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Menú de Comidas</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="index.html">Inicio</a>
+                        <a href="">Menú</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Menu Start -->
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Comidas Disponibles</p>
+                    <h2>Explora Nuestro Menú</h2>
+                    <div id="authWarning" class="alert alert-info mt-3" style="display:none;">
+                        <i class="fas fa-info-circle"></i> Para realizar pedidos y comentar, debes <a href="#" id="authWarningLogin">iniciar sesión</a> o <a href="#" id="authWarningRegister">registrarte</a>
+                    </div>
+                </div>
+                
+                <div id="menuContainer" class="row">
+                    <!-- Las comidas se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+        <!-- Menu End -->
+
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Contáctanos</h2>
+                                    <p><i class="fa fa-map-marker-alt"></i>Ciudad, País</p>
+                                    <p><i class="fa fa-phone-alt"></i>+123 456 7890</p>
+                                    <p><i class="fa fa-envelope"></i>info@foodlink.com</p>
+                                    <div class="footer-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="footer-link">
+                                    <h2>Enlaces Rápidos</h2>
+                                    <a href="index.html">Inicio</a>
+                                    <a href="menu.html">Menú</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="footer-newsletter">
+                            <h2>FoodLink</h2>
+                            <p>Conectando cocineros locales con estudiantes y personas que buscan comida casera de calidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; FoodLink 2025, Todos los Derechos Reservados.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Iniciar Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Iniciar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrarse</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" class="form-control" id="registerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de Usuario</label>
+                                <select class="form-control" id="registerTipo" required>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="cocinero">Cocinero</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input type="tel" class="form-control" id="registerTelefono">
+                            </div>
+                            <div class="form-group">
+                                <label>Edad</label>
+                                <input type="number" class="form-control" id="registerEdad" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Modal -->
+        <div class="modal fade" id="orderModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Realizar Pedido</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="orderForm">
+                            <input type="hidden" id="orderFoodId">
+                            <div class="form-group">
+                                <label>Comida</label>
+                                <input type="text" class="form-control" id="orderFoodName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Cantidad</label>
+                                <input type="number" class="form-control" id="orderQuantity" min="1" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Total</label>
+                                <input type="text" class="form-control" id="orderTotal" readonly>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Confirmar Pedido</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/menu.js"></script>
+    </body>
+</html>

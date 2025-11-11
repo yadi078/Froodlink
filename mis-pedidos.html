@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Mis Pedidos - FoodLink</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            .pedido-card {
+                background: white;
+                border-radius: 10px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            }
+            .pedido-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid #f8f9fa;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+            }
+            .pedido-status {
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            .status-pendiente {
+                background: #ffc107;
+                color: white;
+            }
+            .status-preparando {
+                background: #17a2b8;
+                color: white;
+            }
+            .status-listo {
+                background: #28a745;
+                color: white;
+            }
+            .status-entregado {
+                background: #6c757d;
+                color: white;
+            }
+            .rating-section {
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 2px solid #f8f9fa;
+            }
+            .stars {
+                font-size: 24px;
+                color: #ddd;
+                cursor: pointer;
+            }
+            .stars .star {
+                display: inline-block;
+                margin: 0 3px;
+            }
+            .stars .star.active,
+            .stars .star:hover {
+                color: #FEA116;
+            }
+            .comment-box {
+                margin-top: 15px;
+            }
+            .pedido-comida {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .pedido-comida img {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-right: 15px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">Food<span>Link</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="nav-item nav-link">Inicio</a>
+                        <a href="menu.html" class="nav-item nav-link">Menú</a>
+                        <a href="ventas.html" class="nav-item nav-link d-none" id="ventasLink">Ventas</a>
+                        <a href="mis-pedidos.html" class="nav-item nav-link active d-none" id="misPedidosLink">Mis Pedidos</a>
+                        <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+                        <a href="faq.html" class="nav-item nav-link">Preguntas</a>
+                        <a href="#" class="nav-item nav-link" id="loginBtn">Iniciar Sesión</a>
+                        <a href="#" class="nav-item nav-link" id="registerBtn">Registrarse</a>
+                        <a href="panel-cocinero.html" class="nav-item nav-link d-none" id="panelCocineroBtn">Panel Cocinero</a>
+                        <a href="#" class="nav-item nav-link d-none" id="logoutBtn">Cerrar Sesión</a>
+                        <span class="nav-item nav-link d-none" id="userWelcome"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+        
+        <!-- Page Header Start -->
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Mis Pedidos</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="index.html">Inicio</a>
+                        <a href="">Mis Pedidos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Pedidos Start -->
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>Historial</p>
+                    <h2>Tus Pedidos</h2>
+                </div>
+                
+                <div id="pedidosContainer">
+                    <!-- Los pedidos se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+        <!-- Pedidos End -->
+
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Contáctanos</h2>
+                                    <p><i class="fa fa-map-marker-alt"></i>Ciudad, País</p>
+                                    <p><i class="fa fa-phone-alt"></i>+123 456 7890</p>
+                                    <p><i class="fa fa-envelope"></i>info@foodlink.com</p>
+                                    <div class="footer-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="footer-link">
+                                    <h2>Enlaces Rápidos</h2>
+                                    <a href="index.html">Inicio</a>
+                                    <a href="menu.html">Menú</a>
+                                    <a href="contacto.html">Contacto</a>
+                                    <a href="faq.html">Preguntas Frecuentes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="footer-newsletter">
+                            <h2>FoodLink</h2>
+                            <p>Conectando cocineros locales con estudiantes y personas que buscan comida casera de calidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; FoodLink 2025, Todos los Derechos Reservados.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Iniciar Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Iniciar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrarse</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" class="form-control" id="registerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de Usuario</label>
+                                <select class="form-control" id="registerTipo" required>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="cocinero">Cocinero</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input type="tel" class="form-control" id="registerTelefono">
+                            </div>
+                            <div class="form-group">
+                                <label>Edad</label>
+                                <input type="number" class="form-control" id="registerEdad" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/pedidos.js"></script>
+    </body>
+</html>

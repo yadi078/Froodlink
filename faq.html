@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Preguntas Frecuentes - FoodLink</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            .faq-item {
+                background: white;
+                border-radius: 10px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.08);
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            .faq-item:hover {
+                box-shadow: 0 0 30px rgba(0,0,0,0.12);
+            }
+            .faq-question {
+                font-weight: bold;
+                color: #0F172B;
+                font-size: 18px;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .faq-answer {
+                color: #666;
+                line-height: 1.6;
+                display: none;
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 2px solid #f8f9fa;
+            }
+            .faq-answer.show {
+                display: block;
+            }
+            .faq-icon {
+                color: #FEA116;
+                transition: transform 0.3s;
+            }
+            .faq-item.active .faq-icon {
+                transform: rotate(180deg);
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">Food<span>Link</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="nav-item nav-link">Inicio</a>
+                        <a href="menu.html" class="nav-item nav-link">Menú</a>
+                        <a href="ventas.html" class="nav-item nav-link d-none" id="ventasLink">Ventas</a>
+                        <a href="mis-pedidos.html" class="nav-item nav-link d-none" id="misPedidosLink">Mis Pedidos</a>
+                        <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+                        <a href="faq.html" class="nav-item nav-link active">Preguntas</a>
+                        <a href="#" class="nav-item nav-link" id="loginBtn">Iniciar Sesión</a>
+                        <a href="#" class="nav-item nav-link" id="registerBtn">Registrarse</a>
+                        <a href="panel-cocinero.html" class="nav-item nav-link d-none" id="panelCocineroBtn">Panel Cocinero</a>
+                        <a href="#" class="nav-item nav-link d-none" id="logoutBtn">Cerrar Sesión</a>
+                        <span class="nav-item nav-link d-none" id="userWelcome"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+        
+        <!-- Page Header Start -->
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Preguntas Frecuentes</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="index.html">Inicio</a>
+                        <a href="">Preguntas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- FAQ Start -->
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <p>FAQ</p>
+                    <h2>Preguntas Frecuentes</h2>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Qué es FoodLink?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                FoodLink es una plataforma que conecta cocineros locales con estudiantes y personas que buscan comida casera de calidad. Facilitamos el proceso de pedir y recibir comida deliciosa preparada con amor por cocineros de tu comunidad.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Cómo puedo registrarme?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Para registrarte, haz clic en el botón "Registrarse" en la parte superior de la página. Completa el formulario con tu información y selecciona tu tipo de usuario (Estudiante, Cocinero u Otro). Una vez registrado, podrás iniciar sesión y comenzar a usar la plataforma.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Necesito estar registrado para ver el menú?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                No, puedes ver el menú de comidas disponibles sin registrarte. Sin embargo, para realizar pedidos, comentar o calificar comidas, necesitas crear una cuenta e iniciar sesión.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Cómo realizo un pedido?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Una vez que hayas iniciado sesión, ve al menú, selecciona la comida que desees y haz clic en "Ordenar". Especifica la cantidad que quieres y confirma tu pedido. Podrás ver el estado de tus pedidos en la sección "Mis Pedidos".
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Cómo me registro como cocinero?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Al registrarte, selecciona "Cocinero" en el tipo de usuario. Una vez que inicies sesión, tendrás acceso al "Panel Cocinero" donde podrás agregar, editar y eliminar tus comidas, así como gestionar tu inventario.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Puedo calificar las comidas?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Sí, después de recibir tu pedido, puedes ir a "Mis Pedidos" y calificar la comida con estrellas (1-5) y dejar un comentario sobre tu experiencia. Esto ayuda a otros usuarios a tomar mejores decisiones.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Cómo funciona el inventario?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Los cocineros establecen una cantidad disponible para cada comida. Cuando alguien realiza un pedido, el inventario se actualiza automáticamente. Si una comida se agota, ya no estará disponible para ordenar hasta que el cocinero agregue más unidades.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Cómo puedo contactar al soporte?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Puedes contactarnos a través de la página de Contacto, donde puedes enviar un mensaje con tus preguntas o inquietudes. También puedes llamarnos al +123 456 7890 o enviarnos un email a info@foodlink.com.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Los precios incluyen entrega?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Los precios mostrados son establecidos por cada cocinero. Te recomendamos verificar con el cocinero los detalles sobre entrega, costos adicionales y tiempos de preparación antes de realizar tu pedido.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                ¿Puedo cancelar un pedido?
+                                <i class="fas fa-chevron-down faq-icon"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Puedes ver el estado de tus pedidos en "Mis Pedidos". Para cancelaciones, te recomendamos contactar directamente al cocinero lo antes posible o comunicarte con nuestro equipo de soporte.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FAQ End -->
+
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Contáctanos</h2>
+                                    <p><i class="fa fa-map-marker-alt"></i>Ciudad, País</p>
+                                    <p><i class="fa fa-phone-alt"></i>+123 456 7890</p>
+                                    <p><i class="fa fa-envelope"></i>info@foodlink.com</p>
+                                    <div class="footer-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="footer-link">
+                                    <h2>Enlaces Rápidos</h2>
+                                    <a href="index.html">Inicio</a>
+                                    <a href="menu.html">Menú</a>
+                                    <a href="contacto.html">Contacto</a>
+                                    <a href="faq.html">Preguntas Frecuentes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="footer-newsletter">
+                            <h2>FoodLink</h2>
+                            <p>Conectando cocineros locales con estudiantes y personas que buscan comida casera de calidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; FoodLink 2025, Todos los Derechos Reservados.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Iniciar Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Iniciar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrarse</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" class="form-control" id="registerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de Usuario</label>
+                                <select class="form-control" id="registerTipo" required>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="cocinero">Cocinero</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input type="tel" class="form-control" id="registerTelefono">
+                            </div>
+                            <div class="form-group">
+                                <label>Edad</label>
+                                <input type="number" class="form-control" id="registerEdad" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/faq.js"></script>
+    </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>FoodLink - Conectando Cocineros y Estudiantes</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="FoodLink" name="keywords">
+        <meta content="Plataforma para conectar cocineros con estudiantes y otros" name="description">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">Food<span>Link</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="nav-item nav-link active">Inicio</a>
+                        <a href="menu.html" class="nav-item nav-link">Menú</a>
+                        <a href="ventas.html" class="nav-item nav-link d-none" id="ventasLink">Ventas</a>
+                        <a href="mis-pedidos.html" class="nav-item nav-link d-none" id="misPedidosLink">Mis Pedidos</a>
+                        <a href="contacto.html" class="nav-item nav-link">Contacto</a>
+                        <a href="faq.html" class="nav-item nav-link">Preguntas</a>
+                        <a href="#" class="nav-item nav-link" id="loginBtn">Iniciar Sesión</a>
+                        <a href="#" class="nav-item nav-link" id="registerBtn">Registrarse</a>
+                        <a href="panel-cocinero.html" class="nav-item nav-link d-none" id="panelCocineroBtn">Panel Cocinero</a>
+                        <a href="#" class="nav-item nav-link d-none" id="logoutBtn">Cerrar Sesión</a>
+                        <span class="nav-item nav-link d-none" id="userWelcome"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+        <!-- Carousel Start -->
+        <div class="carousel">
+            <div class="container-fluid">
+                <div class="owl-carousel">
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="img/carousel-1.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-text">
+                            <h1>Comida <span>Casera</span> Deliciosa</h1>
+                            <p>
+                                Conectamos cocineros talentosos con estudiantes y personas que buscan comida casera de calidad
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="menu.html">Ver Menú</a>
+                                <a class="btn custom-btn" href="#" id="heroRegisterBtn">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="img/carousel-2.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-text">
+                            <h1>Cocineros <span>Locales</span></h1>
+                            <p>
+                                Apoya a cocineros de tu comunidad y disfruta de platillos preparados con amor y dedicación
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="menu.html">Ver Menú</a>
+                                <a class="btn custom-btn" href="#" id="heroRegisterBtn2">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="img/carousel-3.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-text">
+                            <h1>Pedidos <span>Fáciles</span></h1>
+                            <p>
+                                Explora nuestro menú, realiza tu pedido y recibe tu comida casera favorita
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="menu.html">Ver Menú</a>
+                                <a class="btn custom-btn" href="#" id="heroRegisterBtn3">Registrarse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel End -->
+
+        <!-- About Start -->
+        <div class="about">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="img/about.jpg" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="section-header">
+                                <p>Sobre Nosotros</p>
+                                <h2>Conectando Comunidades</h2>
+                            </div>
+                            <div class="about-text">
+                                <p>
+                                    FoodLink es una plataforma que conecta cocineros talentosos con estudiantes y personas que buscan comida casera de calidad. Creemos en el poder de la comunidad y en apoyar el talento local.
+                                </p>
+                                <p>
+                                    Nuestra misión es facilitar el acceso a comida deliciosa y nutritiva, mientras apoyamos a cocineros que ponen pasión en cada platillo que preparan.
+                                </p>
+                                <a class="btn custom-btn" href="menu.html">Ver Menú</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+        <!-- Feature Start -->
+        <div class="feature">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="section-header">
+                            <p>Por Qué Elegirnos</p>
+                            <h2>Nuestras Características</h2>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-img">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="img/feature-1.jpg" alt="Image">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="img/feature-2.jpg" alt="Image">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="img/feature-3.jpg" alt="Image">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="img/feature-4.jpg" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                Conectamos cocineros locales con personas que buscan comida casera de calidad. Nuestra plataforma es fácil de usar y segura.
+                            </p>
+                            <a class="btn custom-btn" href="menu.html">Ver Menú</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-cooking"></i>
+                                    <h3>Cocineros Locales</h3>
+                                    <p>
+                                        Conecta con cocineros talentosos de tu comunidad que preparan comida con amor
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-vegetable"></i>
+                                    <h3>Ingredientes Frescos</h3>
+                                    <p>
+                                        Todos nuestros cocineros utilizan ingredientes frescos y de calidad
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-medal"></i>
+                                    <h3>Calidad Garantizada</h3>
+                                    <p>
+                                        Verificamos a todos nuestros cocineros para garantizar la mejor experiencia
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-item">
+                                    <i class="flaticon-courier"></i>
+                                    <h3>Pedidos Fáciles</h3>
+                                    <p>
+                                        Sistema simple para realizar y gestionar tus pedidos de comida
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feature End -->
+
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Contáctanos</h2>
+                                    <p><i class="fa fa-map-marker-alt"></i>Ciudad, País</p>
+                                    <p><i class="fa fa-phone-alt"></i>+123 456 7890</p>
+                                    <p><i class="fa fa-envelope"></i>info@foodlink.com</p>
+                                    <div class="footer-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="footer-link">
+                                    <h2>Enlaces Rápidos</h2>
+                                    <a href="index.html">Inicio</a>
+                                    <a href="menu.html">Menú</a>
+                                    <a href="contacto.html">Contacto</a>
+                                    <a href="faq.html">Preguntas</a>
+                                    <a href="#">Términos de Uso</a>
+                                    <a href="#">Privacidad</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="footer-newsletter">
+                            <h2>FoodLink</h2>
+                            <p>
+                                Conectando cocineros locales con estudiantes y personas que buscan comida casera de calidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; FoodLink 2025, Todos los Derechos Reservados.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Iniciar Sesión</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Iniciar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrarse</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" class="form-control" id="registerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de Usuario</label>
+                                <select class="form-control" id="registerTipo" required>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="cocinero">Cocinero</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input type="tel" class="form-control" id="registerTelefono">
+                            </div>
+                            <div class="form-group">
+                                <label>Edad</label>
+                                <input type="number" class="form-control" id="registerEdad" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" required>
+                            </div>
+                            <button type="submit" class="btn custom-btn btn-block">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        <script src="js/auth.js"></script>
+    </body>
+</html>
