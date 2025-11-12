@@ -1,0 +1,78 @@
+rules_version = '2';
+
+/**
+ * ============================================
+ * REGLAS DE SEGURIDAD DE FIRESTORE - FOODLINK
+ * ============================================
+ * Implementa seguridad a nivel de base de datos
+ * 
+ * PRINCIPIOS APLICADOS:
+ * - Solo usuarios autenticados pueden acceder a datos
+ * - Los vendedores solo pueden ver/editar sus propios platillos
+ * - Validación de campos obligatorios
+ * - Prevención de modificación de campos críticos
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Función auxiliar: Verificar si el usuario está autenticado
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Función auxiliar: Verificar si es el propietario del documento
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    // Colección de usuarios
+    match /usuarios/{userId} {
+      // Permitir lectura solo si es el usuario autenticado
+      allow read: if isAuthenticated() && isOwner(userId);
+      
+      // Permitir crear solo durante el registro
+      allow create: if isAuthenticated() && isOwner(userId);
+      
+      // Permitir actualizar solo sus propios datos
+      allow update: if isAuthenticated() && isOwner(userId);
+      
+      // No permitir eliminación
+      allow delete: if false;
+    }
+    
+    // Colección de platillos
+    match /platillos/{platilloId} {
+      // Permitir leer solo si es el propietario del platillo
+      allow read: if isAuthenticated() && 
+                     isOwner(resource.data.userId);
+      
+      // Permitir crear platillos si está autenticado y el userId coincide
+      allow create: if isAuthenticated() && 
+                       isOwner(request.resource.data.userId) &&
+                       // Validar campos obligatorios
+                       request.resource.data.nombre is string &&
+                       request.resource.data.descripcion is string &&
+                       request.resource.data.precio is number &&
+                       request.resource.data.precio > 0 &&
+                       request.resource.data.userId is string;
+      
+      // Permitir actualizar solo si es el propietario
+      // y no se modifica el userId
+      allow update: if isAuthenticated() && 
+                       isOwner(resource.data.userId) &&
+                       request.resource.data.userId == resource.data.userId &&
+                       request.resource.data.precio > 0;
+      
+      // Permitir eliminar solo si es el propietario
+      allow delete: if isAuthenticated() && 
+                       isOwner(resource.data.userId);
+    }
+    
+    // Denegar acceso a todas las demás colecciones
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
