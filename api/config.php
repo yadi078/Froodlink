@@ -1,9 +1,32 @@
 <?php
 // config.php - Configuración de la base de datos
+
+// ============================================
+// HEADERS DE SEGURIDAD
+// ============================================
+
+// CORS - Para producción, cambiar * por el dominio específico
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type');
+
+// Forzar HTTPS en producción (comentar para desarrollo local sin SSL)
+// Descomentar estas líneas cuando se configure SSL/TLS
+/*
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    exit();
+}
+*/
+
+// Headers de seguridad adicionales
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains'); // HSTS
+header('X-Content-Type-Options: nosniff'); // Prevenir MIME sniffing
+header('X-Frame-Options: DENY'); // Prevenir clickjacking
+header('X-XSS-Protection: 1; mode=block'); // Protección XSS en navegadores antiguos
+header('Referrer-Policy: strict-origin-when-cross-origin'); // Control de referrer
 
 // ============================================
 // CARGAR CREDENCIALES DESDE ARCHIVO SEGURO
