@@ -237,8 +237,7 @@ foodlink-mobile/
 ├── babel.config.js              # Configuración de Babel
 ├── package.json                 # Dependencias del proyecto
 ├── firestore.rules              # Reglas de seguridad de Firestore
-├── README.md                    # Este archivo
-└── GIT_FLOW_COMMANDS.md         # Comandos de versionamiento
+└── README.md                    # Este archivo
 
 ```
 
