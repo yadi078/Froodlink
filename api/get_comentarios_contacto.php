@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 
 require_once 'config.php';
@@ -16,13 +16,13 @@ try {
     echo json_encode([
         'success' => true,
         'comentarios' => $comentarios
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
         'message' => 'Error al obtener comentarios: ' . $e->getMessage()
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 $conn->close();

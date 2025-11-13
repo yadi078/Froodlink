@@ -1,6 +1,6 @@
 <?php
 // register.php - Registro de usuarios
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -8,7 +8,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+    echo json_encode(['success' => false, 'message' => 'Método no permitido'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -26,17 +26,17 @@ $contrasena = $input['contrasena'] ?? '';
 
 // Validaciones
 if (empty($nombre) || empty($tipo) || empty($correo) || empty($contrasena)) {
-    echo json_encode(['success' => false, 'message' => 'Todos los campos obligatorios deben ser completados']);
+    echo json_encode(['success' => false, 'message' => 'Todos los campos obligatorios deben ser completados'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 if (!in_array($tipo, ['estudiante', 'cocinero', 'otro'])) {
-    echo json_encode(['success' => false, 'message' => 'Tipo de usuario inválido']);
+    echo json_encode(['success' => false, 'message' => 'Tipo de usuario inválido'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['success' => false, 'message' => 'Correo electrónico inválido']);
+    echo json_encode(['success' => false, 'message' => 'Correo electrónico inválido'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -46,7 +46,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    echo json_encode(['success' => false, 'message' => 'El correo electrónico ya está registrado']);
+    echo json_encode(['success' => false, 'message' => 'El correo electrónico ya está registrado'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -60,12 +60,12 @@ if ($stmt->execute()) {
     echo json_encode([
         'success' => true,
         'message' => 'Usuario registrado exitosamente'
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 } else {
     echo json_encode([
         'success' => false,
         'message' => 'Error al registrar usuario: ' . $conn->error
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 $stmt->close();

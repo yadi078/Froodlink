@@ -1,7 +1,7 @@
 // auth.js - Sistema de autenticación para FoodLink
 ;(($) => {
   // API Configuration - Cambiar esto por tu URL de API
-  const API_URL = "https://localhost/foodlink/api"
+   const API_URL = "http://localhost/Foodlink/api"
 
   // Verificar sesión al cargar la página
   $(document).ready(() => {

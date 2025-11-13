@@ -1,6 +1,6 @@
 <?php
 // get_comidas.php - Obtener todas las comidas disponibles
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 
 require_once 'config.php';
@@ -21,7 +21,7 @@ while ($row = $result->fetch_assoc()) {
 echo json_encode([
     'success' => true,
     'comidas' => $comidas
-]);
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 $conn->close();
 ?>

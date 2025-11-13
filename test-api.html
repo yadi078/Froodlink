@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de API - Foodlik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .endpoint {
+            margin-bottom: 15px;
+        }
+
+        .endpoint-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .method.get {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .method.post {
+            background: #2196F3;
+            color: white;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .result h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        #output {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 500px;
+            overflow-y: auto;
+            border-left: 4px solid #667eea;
+        }
+
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .status.ok {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status.fail {
+            background: #f44336;
+            color: white;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .info p {
+            margin: 5px 0;
+            color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍕 Prueba de API - Foodlik</h1>
+
+        <div class="info">
+            <p><strong>📌 Instrucciones:</strong> Haz clic en cualquier botón para probar un endpoint de la API.</p>
+            <p><strong>✨ Los resultados aparecerán abajo en tiempo real.</strong></p>
+        </div>
+
+        <div class="grid">
+            <!-- GET Endpoints -->
+            <div class="card">
+                <h2>📋 Listar Datos (GET)</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method get">GET</span> Obtener Comidas
+                    </div>
+                    <button onclick="testAPI('get_comidas.php')">🍔 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method get">GET</span> Obtener Pedidos
+                    </div>
+                    <input type="number" id="usuario_id" placeholder="ID de usuario (ej: 1)" value="1">
+                    <button onclick="testAPI('get_pedidos.php?usuario_id=' + document.getElementById('usuario_id').value)">📦 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method get">GET</span> Comidas de Cocinero
+                    </div>
+                    <input type="number" id="cocinero_id" placeholder="ID de cocinero (ej: 2)" value="2">
+                    <button onclick="testAPI('get_my_comidas.php?id_cocinero=' + document.getElementById('cocinero_id').value)">👨‍🍳 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method get">GET</span> Comentarios de Comida
+                    </div>
+                    <input type="number" id="comida_id" placeholder="ID de comida (ej: 1)" value="1">
+                    <button onclick="testAPI('get_comentarios.php?id_comida=' + document.getElementById('comida_id').value)">💬 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method get">GET</span> Ventas de Cocinero
+                    </div>
+                    <input type="number" id="ventas_cocinero_id" placeholder="ID de cocinero (ej: 2)" value="2">
+                    <button onclick="testAPI('get_ventas_cocinero.php?id_cocinero=' + document.getElementById('ventas_cocinero_id').value)">💰 Probar</button>
+                </div>
+            </div>
+
+            <!-- POST Endpoints - Registro y Login -->
+            <div class="card">
+                <h2>🔐 Autenticación (POST)</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Registrar Usuario
+                    </div>
+                    <button onclick="testRegister()">📝 Probar Registro</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Iniciar Sesión
+                    </div>
+                    <button onclick="testLogin()">🔑 Probar Login</button>
+                </div>
+            </div>
+
+            <!-- POST Endpoints - Comidas -->
+            <div class="card">
+                <h2>🍽️ Gestión de Comidas (POST)</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Agregar Comida
+                    </div>
+                    <button onclick="testAddComida()">➕ Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Actualizar Comida
+                    </div>
+                    <button onclick="testUpdateComida()">✏️ Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Eliminar Comida
+                    </div>
+                    <button onclick="testDeleteComida()">🗑️ Probar</button>
+                </div>
+            </div>
+
+            <!-- POST Endpoints - Pedidos -->
+            <div class="card">
+                <h2>🛒 Gestión de Pedidos (POST)</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Crear Pedido
+                    </div>
+                    <button onclick="testCreatePedido()">🛍️ Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Actualizar Estado
+                    </div>
+                    <button onclick="testUpdateEstado()">📊 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Calificar Comida
+                    </div>
+                    <button onclick="testCalificarComida()">⭐ Probar</button>
+                </div>
+            </div>
+
+            <!-- POST Endpoints - Comentarios -->
+            <div class="card">
+                <h2>💭 Comentarios (POST)</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Agregar Comentario
+                    </div>
+                    <button onclick="testAddComentario()">💬 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method post">POST</span> Contacto
+                    </div>
+                    <button onclick="testContacto()">📧 Probar</button>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        <span class="method get">GET</span> Ver Comentarios Contacto
+                    </div>
+                    <button onclick="testAPI('get_comentarios_contacto.php')">📨 Probar</button>
+                </div>
+            </div>
+
+            <!-- Prueba Completa -->
+            <div class="card">
+                <h2>🚀 Prueba Completa</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-name">
+                        Probar TODOS los endpoints GET
+                    </div>
+                    <button onclick="testAllGET()">⚡ Ejecutar Prueba Completa</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+            <h2>📊 Resultados de la Prueba</h2>
+            <div id="output">Haz clic en cualquier botón para ver los resultados...</div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost/Foodlik/api/';
+
+        function displayResult(endpoint, data, success = true) {
+            const output = document.getElementById('output');
+            const timestamp = new Date().toLocaleTimeString();
+            const status = success ? 
+                '<span class="status ok">✅ ÉXITO</span>' : 
+                '<span class="status fail">❌ ERROR</span>';
+            
+            output.innerHTML = `
+${status}
+⏰ Hora: ${timestamp}
+🔗 Endpoint: ${endpoint}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+${JSON.stringify(data, null, 2)}
+            `;
+        }
+
+        async function testAPI(endpoint, method = 'GET', body = null) {
+            try {
+                const options = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                if (body) {
+                    options.body = JSON.stringify(body);
+                }
+
+                const response = await fetch(API_BASE + endpoint, options);
+                const data = await response.json();
+                
+                displayResult(endpoint, data, data.success !== false);
+            } catch (error) {
+                displayResult(endpoint, { error: error.message }, false);
+            }
+        }
+
+        async function testPOST(endpoint, formData) {
+            try {
+                const response = await fetch(API_BASE + endpoint, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                displayResult(endpoint, data, data.success !== false);
+            } catch (error) {
+                displayResult(endpoint, { error: error.message }, false);
+            }
+        }
+
+        function testRegister() {
+            const data = {
+                nombre: "Usuario Prueba",
+                tipo: "estudiante",
+                correo: "prueba" + Date.now() + "@test.com",
+                telefono: "3121234567",
+                edad: 25,
+                contrasena: "password123"
+            };
+            testAPI('register.php', 'POST', data);
+        }
+
+        function testLogin() {
+            const data = {
+                correo: "juan@email.com",
+                contrasena: "password123"
+            };
+            testAPI('login.php', 'POST', data);
+        }
+
+        function testAddComida() {
+            const formData = new FormData();
+            formData.append('id_cocinero', '2');
+            formData.append('nombre_comida', 'Comida de Prueba');
+            formData.append('precio', '50.00');
+            formData.append('cantidad', '10');
+            formData.append('foto', 'test.jpg');
+            formData.append('descripcion', 'Esta es una comida de prueba');
+            testPOST('add_comida.php', formData);
+        }
+
+        function testUpdateComida() {
+            const formData = new FormData();
+            formData.append('id_comida', '1');
+            formData.append('nombre_comida', 'Tacos al Pastor Actualizado');
+            formData.append('precio', '50.00');
+            formData.append('cantidad', '25');
+            formData.append('foto', 'foto1.jpg');
+            formData.append('descripcion', 'Descripción actualizada');
+            testPOST('update_comida.php', formData);
+        }
+
+        function testDeleteComida() {
+            if (confirm('⚠️ Esto eliminará una comida de prueba. ¿Continuar?')) {
+                const formData = new FormData();
+                formData.append('id_comida', '999'); // ID que probablemente no existe
+                testPOST('delete_comida.php', formData);
+            }
+        }
+
+        function testCreatePedido() {
+            const formData = new FormData();
+            formData.append('id_usuario', '1');
+            formData.append('id_comida', '1');
+            formData.append('cantidad', '2');
+            testPOST('create_pedido.php', formData);
+        }
+
+        function testUpdateEstado() {
+            const formData = new FormData();
+            formData.append('id_pedido', '1');
+            formData.append('estado', 'preparando');
+            testPOST('update_estado_pedido.php', formData);
+        }
+
+        function testCalificarComida() {
+            const data = {
+                pedido_id: 1,
+                usuario_id: 1,
+                comida_id: 1,
+                calificacion: 5,
+                comentario: "¡Excelente comida!"
+            };
+            testAPI('calificar_comida.php', 'POST', data);
+        }
+
+        function testAddComentario() {
+            const formData = new FormData();
+            formData.append('id_usuario', '1');
+            formData.append('id_comida', '1');
+            formData.append('comentario', 'Este es un comentario de prueba');
+            testPOST('add_comentario.php', formData);
+        }
+
+        function testContacto() {
+            const data = {
+                nombre: "Usuario Prueba",
+                email: "prueba@test.com",
+                asunto: "Consulta de prueba",
+                mensaje: "Este es un mensaje de prueba desde la página de testing"
+            };
+            testAPI('add_comentario_contacto.php', 'POST', data);
+        }
+
+        async function testAllGET() {
+            const output = document.getElementById('output');
+            output.innerHTML = '🚀 Ejecutando prueba completa de endpoints GET...\n\n';
+
+            const endpoints = [
+                'get_comidas.php',
+                'get_pedidos.php?usuario_id=1',
+                'get_my_comidas.php?id_cocinero=2',
+                'get_comentarios.php?id_comida=1',
+                'get_ventas_cocinero.php?id_cocinero=2',
+                'get_comentarios_contacto.php'
+            ];
+
+            let results = [];
+            
+            for (const endpoint of endpoints) {
+                try {
+                    const response = await fetch(API_BASE + endpoint);
+                    const data = await response.json();
+                    const success = data.success !== false;
+                    results.push({
+                        endpoint,
+                        status: success ? '✅ OK' : '❌ FAIL',
+                        data
+                    });
+                } catch (error) {
+                    results.push({
+                        endpoint,
+                        status: '❌ ERROR',
+                        error: error.message
+                    });
+                }
+            }
+
+            output.innerHTML = `
+🎉 PRUEBA COMPLETA FINALIZADA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+${results.map((r, i) => `
+${i + 1}. ${r.status} ${r.endpoint}
+${r.error ? '   Error: ' + r.error : '   ' + JSON.stringify(r.data, null, 2)}
+`).join('\n')}
+            `;
+        }
+    </script>
+</body>
+</html>
+
