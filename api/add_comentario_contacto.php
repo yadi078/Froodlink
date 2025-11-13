@@ -6,30 +6,35 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 require_once 'config.php';
 
+// Leer datos enviados en formato JSON
 $data = json_decode(file_get_contents('php://input'), true);
 
-$nombre = isset($data['nombre']) ? trim($data['nombre']) : '';
-$email = isset($data['email']) ? trim($data['email']) : '';
-$asunto = isset($data['asunto']) ? trim($data['asunto']) : '';
+// Sanitizar y validar datos
+$nombre  = isset($data['nombre']) ? trim($data['nombre']) : '';
+$correo  = isset($data['email']) ? trim($data['email']) : ''; // 'email' viene del frontend, pero el campo en DB es 'correo'
+$asunto  = isset($data['asunto']) ? trim($data['asunto']) : '';
 $mensaje = isset($data['mensaje']) ? trim($data['mensaje']) : '';
 
-if (empty($nombre) || empty($email) || empty($asunto) || empty($mensaje)) {
+// Validar campos obligatorios
+if (empty($nombre) || empty($correo) || empty($asunto) || empty($mensaje)) {
     echo json_encode(['success' => false, 'message' => 'Todos los campos son requeridos']);
     exit;
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['success' => false, 'message' => 'Email inválido']);
+// Validar formato del correo (se usa $correo, no $email)
+if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(['success' => false, 'message' => 'Correo inválido']);
     exit;
 }
 
 try {
-    $sql = "INSERT INTO comentarios_contacto (nombre, email, asunto, mensaje, fecha) 
+    // Consulta ajustada a los nombres reales de tu tabla
+    $sql = "INSERT INTO comentarios_contacto (nombre, correo, asunto, mensaje, fecha) 
             VALUES (?, ?, ?, ?, NOW())";
-    
+
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $nombre, $email, $asunto, $mensaje);
-    
+    $stmt->bind_param("ssss", $nombre, $correo, $asunto, $mensaje);
+
     if ($stmt->execute()) {
         echo json_encode([
             'success' => true,
@@ -38,10 +43,12 @@ try {
     } else {
         echo json_encode([
             'success' => false,
-            'message' => 'Error al enviar el mensaje'
+            'message' => 'Error al guardar el mensaje en la base de datos'
         ]);
     }
-    
+
+    $stmt->close();
+
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
