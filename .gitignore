@@ -9,7 +9,6 @@
 *.env
 
 
-*.test-api.html
 
 
 # Archivo de configuración PHP con credenciales de base de datos
