@@ -12,9 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$id_usuario = intval($_POST['id_usuario'] ?? 0);
-$id_comida = intval($_POST['id_comida'] ?? 0);
-$cantidad = intval($_POST['cantidad'] ?? 0);
+// 🔹 Soporte dual: JSON (para Postman/fetch) y Form-Data (para formularios HTML)
+$input = json_decode(file_get_contents('php://input'), true);
+$id_usuario = intval($input['id_usuario'] ?? $_POST['id_usuario'] ?? 0);
+$id_comida = intval($input['id_comida'] ?? $_POST['id_comida'] ?? 0);
+$cantidad = intval($input['cantidad'] ?? $_POST['cantidad'] ?? 0);
 
 if ($id_usuario === 0 || $id_comida === 0 || $cantidad <= 0) {
     echo json_encode(['success' => false, 'message' => 'Datos incompletos'], JSON_UNESCAPED_UNICODE);
