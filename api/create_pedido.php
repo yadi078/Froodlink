@@ -1,6 +1,6 @@
 <?php
 // create_pedido.php - Crear un nuevo pedido
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -8,7 +8,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+    echo json_encode(['success' => false, 'message' => 'Método no permitido'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -17,7 +17,7 @@ $id_comida = intval($_POST['id_comida'] ?? 0);
 $cantidad = intval($_POST['cantidad'] ?? 0);
 
 if ($id_usuario === 0 || $id_comida === 0 || $cantidad <= 0) {
-    echo json_encode(['success' => false, 'message' => 'Datos incompletos']);
+    echo json_encode(['success' => false, 'message' => 'Datos incompletos'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -27,14 +27,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    echo json_encode(['success' => false, 'message' => 'Comida no encontrada']);
+    echo json_encode(['success' => false, 'message' => 'Comida no encontrada'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 $comida = $result->fetch_assoc();
 
 if ($comida['cantidad'] < $cantidad) {
-    echo json_encode(['success' => false, 'message' => 'No hay suficiente cantidad disponible']);
+    echo json_encode(['success' => false, 'message' => 'No hay suficiente cantidad disponible'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -49,12 +49,12 @@ if ($stmt->execute()) {
         'success' => true,
         'id_pedido' => $conn->insert_id,
         'message' => 'Pedido creado exitosamente'
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 } else {
     echo json_encode([
         'success' => false,
         'message' => 'Error al crear pedido: ' . $conn->error
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 $stmt->close();

@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -14,17 +14,17 @@ $asunto = isset($data['asunto']) ? trim($data['asunto']) : '';
 $mensaje = isset($data['mensaje']) ? trim($data['mensaje']) : '';
 
 if (empty($nombre) || empty($email) || empty($asunto) || empty($mensaje)) {
-    echo json_encode(['success' => false, 'message' => 'Todos los campos son requeridos']);
+    echo json_encode(['success' => false, 'message' => 'Todos los campos son requeridos'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['success' => false, 'message' => 'Email inválido']);
+    echo json_encode(['success' => false, 'message' => 'Email inválido'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 try {
-    $sql = "INSERT INTO comentarios_contacto (nombre, email, asunto, mensaje, fecha) 
+    $sql = "INSERT INTO comentarios_contacto (nombre, correo, asunto, mensaje, fecha) 
             VALUES (?, ?, ?, ?, NOW())";
     
     $stmt = $conn->prepare($sql);
@@ -34,19 +34,19 @@ try {
         echo json_encode([
             'success' => true,
             'message' => 'Mensaje enviado exitosamente'
-        ]);
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     } else {
         echo json_encode([
             'success' => false,
             'message' => 'Error al enviar el mensaje'
-        ]);
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
     
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
         'message' => 'Error: ' . $e->getMessage()
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 $conn->close();

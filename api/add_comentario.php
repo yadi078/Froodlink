@@ -1,6 +1,6 @@
 <?php
 // add_comentario.php - Agregar comentario a una comida
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -8,7 +8,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+    echo json_encode(['success' => false, 'message' => 'Método no permitido'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -17,7 +17,7 @@ $id_comida = intval($_POST['id_comida'] ?? 0);
 $comentario = $conn->real_escape_string($_POST['comentario'] ?? '');
 
 if ($id_usuario === 0 || $id_comida === 0 || empty($comentario)) {
-    echo json_encode(['success' => false, 'message' => 'Datos incompletos']);
+    echo json_encode(['success' => false, 'message' => 'Datos incompletos'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -29,12 +29,12 @@ if ($stmt->execute()) {
         'success' => true,
         'id_comentario' => $conn->insert_id,
         'message' => 'Comentario agregado exitosamente'
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 } else {
     echo json_encode([
         'success' => false,
         'message' => 'Error al agregar comentario: ' . $conn->error
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 $stmt->close();

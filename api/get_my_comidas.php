@@ -1,6 +1,6 @@
 <?php
 // get_my_comidas.php - Obtener las comidas de un cocinero específico
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 
 require_once 'config.php';
@@ -11,7 +11,7 @@ if ($id_cocinero === 0) {
     echo json_encode([
         'success' => false,
         'message' => 'ID de cocinero requerido'
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -28,7 +28,7 @@ while ($row = $result->fetch_assoc()) {
 echo json_encode([
     'success' => true,
     'comidas' => $comidas
-]);
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 $stmt->close();
 $conn->close();

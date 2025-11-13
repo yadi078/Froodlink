@@ -7,7 +7,7 @@
 
 // CORS - Para producción, cambiar * por el dominio específico
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -72,7 +72,7 @@ function sendResponse($success, $data = [], $message = '') {
         'success' => $success,
         'data' => $data,
         'message' => $message
-    ] + $data);
+    ] + $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 ?>

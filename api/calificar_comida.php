@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -15,7 +15,7 @@ $calificacion = isset($data['calificacion']) ? intval($data['calificacion']) : 0
 $comentario = isset($data['comentario']) ? trim($data['comentario']) : '';
 
 if ($pedido_id === 0 || $usuario_id === 0 || $comida_id === 0 || $calificacion < 1 || $calificacion > 5) {
-    echo json_encode(['success' => false, 'message' => 'Datos inválidos']);
+    echo json_encode(['success' => false, 'message' => 'Datos inválidos'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -28,7 +28,7 @@ try {
     $check_result = $check_stmt->get_result();
     
     if ($check_result->num_rows > 0) {
-        echo json_encode(['success' => false, 'message' => 'Ya has calificado este pedido']);
+        echo json_encode(['success' => false, 'message' => 'Ya has calificado este pedido'], JSON_UNESCAPED_UNICODE);
         exit;
     }
     
@@ -42,19 +42,19 @@ try {
         echo json_encode([
             'success' => true,
             'message' => 'Calificación enviada exitosamente'
-        ]);
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     } else {
         echo json_encode([
             'success' => false,
             'message' => 'Error al guardar la calificación'
-        ]);
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
     
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
         'message' => 'Error: ' . $e->getMessage()
-    ]);
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 $conn->close();

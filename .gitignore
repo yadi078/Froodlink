@@ -8,10 +8,8 @@
 .env.production
 *.env
 
-*.AUDITORIA_SEGURIDAD.md
-*.CAMBIOS_HTTPS
-*.CONFIGURAR_SSL.md
-*.RESUMEN_IMPLEMENTACION.MD
+
+*.test-api.html
 
 
 # Archivo de configuración PHP con credenciales de base de datos
