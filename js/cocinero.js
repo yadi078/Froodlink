@@ -1,6 +1,6 @@
 // cocinero.js - Panel del cocinero
 ;(($) => {
-  const API_URL = "https://localhost/foodlink/api"
+  const API_URL = "http://localhost/Foodlik/api"
 
   $(document).ready(() => {
     const user = window.FoodLinkAuth.getUser()

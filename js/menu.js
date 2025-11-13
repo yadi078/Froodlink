@@ -1,6 +1,6 @@
 // menu.js - Gestión del menú de comidas
 ;(($) => {
-  const API_URL = "https://localhost/foodlink/api"
+  const API_URL = "http://localhost/Foodlik/api"
 
   $(document).ready(() => {
     loadMenu()
